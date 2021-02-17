@@ -1,6 +1,6 @@
 {
   "name": "amphora-fs",
-  "version": "1.0.2",
+  "version": "2.0.0-0",
   "description": "File system utils for Amphora and the Clay ecosystem",
   "main": "index.js",
   "scripts": {
