@@ -1,6 +1,6 @@
 {
   "name": "amphora-fs",
-  "version": "2.0.0-0",
+  "version": "1.0.2",
   "description": "File system utils for Amphora and the Clay ecosystem",
   "main": "index.js",
   "scripts": {
@@ -12,7 +12,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "clayutils": "3.0.0-0",
+    "clayutils": "^3.0.0",
     "js-yaml": "^3.14.1",
     "lodash": "^4.17.20",
     "template2env": "^1.0.4"
