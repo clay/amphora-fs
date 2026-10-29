@@ -19,7 +19,6 @@
   },
   "homepage": "https://github.com/clay/amphora-fs#readme",
   "dependencies": {
-    "clayutils": "^3.0.0",
     "js-yaml": "^3.15.2"
   },
   "devDependencies": {
