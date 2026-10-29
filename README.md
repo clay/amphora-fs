@@ -7,6 +7,8 @@ Utility functions for working with the file system in Clay. This module will ass
 
 # Installation
 
+Node 26.12.1 or later.
+
 ```
 npm install --save amphora-fs
 ```
@@ -47,5 +49,5 @@ npm install --save amphora-fs
 npm test
 ```
 
-runs ESLint and the tests (`node --test`, Node 20 or later), and checks that every function still gives what amphora-fs 2.0.0 gave on a project that looks like a Clay site (`test/golden.test.js`).
+runs ESLint and the tests (`node --test`), and checks that every function still gives what amphora-fs 2.0.0 gave on a project that looks like a Clay site (`test/golden.test.js`).
 
