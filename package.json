@@ -3,6 +3,11 @@
   "version": "2.0.0",
   "description": "File system utils for Amphora and the Clay ecosystem",
   "main": "index.js",
+  "files": [
+    "index.js",
+    "lib",
+    "!**/*.test.js"
+  ],
   "scripts": {
     "lint": "eslint",
     "test-local": "node --test lib/*/*.test.js test/*.test.js",
