@@ -9,8 +9,16 @@
     "test": "npm run lint && npm run mocha",
     "mocha": "istanbul cover _mocha"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/clay/amphora-fs.git"
+  },
   "author": "",
   "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/clay/amphora-fs/issues"
+  },
+  "homepage": "https://github.com/clay/amphora-fs#readme",
   "dependencies": {
     "clayutils": "^3.0.0",
     "js-yaml": "^3.14.1",
