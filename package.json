@@ -20,8 +20,7 @@
   "homepage": "https://github.com/clay/amphora-fs#readme",
   "dependencies": {
     "clayutils": "^3.0.0",
-    "js-yaml": "^3.14.1",
-    "template2env": "^1.0.4"
+    "js-yaml": "^3.14.1"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
