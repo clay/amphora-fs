@@ -1,12 +1,13 @@
 # Amphora FS
 
-[![CircleCI](https://circleci.com/gh/clay/amphora-fs.svg?style=svg)](https://circleci.com/gh/clay/amphora-fs)
-[![Coverage Status](https://coveralls.io/repos/github/clay/amphora-fs/badge.svg?branch=master)](https://coveralls.io/github/clay/amphora-fs?branch=master)
+[![CI](https://github.com/clay/amphora-fs/actions/workflows/ci.yml/badge.svg)](https://github.com/clay/amphora-fs/actions/workflows/ci.yml)
 
 
 Utility functions for working with the file system in Clay. This module will assume that the process which is running will be triggered from a directory that contains a `package.json` file and `/components` directory.
 
 # Installation
+
+Node 26.12.1 or later.
 
 ```
 npm install --save amphora-fs
@@ -34,3 +35,19 @@ npm install --save amphora-fs
 * **isDirectory** [(code|tests|docs)](https://github.com/clay/amphora-fs/tree/master/lib/isDirectory) - determine if a path is a directory
 * **readFilePromise** [(code|tests|docs)](https://github.com/clay/amphora-fs/tree/master/lib/readFilePromise) - `fs.readFile` that returns a promise
 * **tryRequire** [(code|tests|docs)](https://github.com/clay/amphora-fs/tree/master/lib/tryRequire) - attempt to `require()` a file, with graceful fallback
+
+# Good to know
+
+* The lists and files are read once. `getComponents`, `getLayouts`, `getFiles`, `getFolders`, `isDirectory`, `getYaml`, `tryRequire`, `getComponentModule` and `getComponentPackage` remember what they found for each argument, including that something was not found, so a file added later is not seen. Each one has a `cache` (a `Map`) that can be cleared.
+* `getYaml(path)` reads `path.yaml`, or `path.yml` if there is no `.yaml` or it is empty. It is `null` if there is no file (`undefined` for a missing `config` or `local`), and throws, naming the file, if the yaml is not valid.
+* In `config` and `local` files, `${NAME}` is replaced by the environment variable `NAME`, which must be set and not empty.
+* Yaml is read with js-yaml 3 (`safeLoad`): numbers by YAML 1.1 rules (`0777` is 511, `12:30` is 750, `yes` is a string), merge keys, timestamps, no js types.
+
+# Development
+
+```
+npm test
+```
+
+runs ESLint and the tests (`node --test`), and checks that every function still gives what amphora-fs 2.0.0 gave on a project that looks like a Clay site (`test/golden.test.js`).
+
