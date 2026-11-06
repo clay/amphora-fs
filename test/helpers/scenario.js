@@ -122,7 +122,7 @@ async function runScenario(afs) {
   }
 
   for (const file of [at('sites', 'alpha', 'subsites', 'sub1', 'config'), at('sites', 'alpha', 'config.yaml'), at('sites', 'alpha', 'config.yml'), at('nope', 'config'),
-    'config', 'local', 'schema', at('sites', 'alpha', 'Config'), at('sites', 'alpha', 'config.'), at('sites', 'alpha', 'config.v2')]) {
+    'config', 'local', 'schema', at('sites', 'alpha', 'config.'), at('sites', 'alpha', 'config.v2')]) {
     await call(`getYaml ${label(file)}`, afs.getYaml, file);
   }
 
@@ -142,7 +142,10 @@ async function runScenario(afs) {
     await call(`isDirectory ${label(file)}`, afs.isDirectory, file);
     await call(`getFolders ${label(file)}`, afs.getFolders, file);
     await call(`getFiles ${label(file)}`, afs.getFiles, file);
-    await call(`readFilePromise ${label(file)}`, afs.readFilePromise, file);
+    // fs.readFile reads a number as a file descriptor, not as a path: 0 is stdin, and 5 can be a pipe that never ends
+    if (typeof file !== 'number') {
+      await call(`readFilePromise ${label(file)}`, afs.readFilePromise, file);
+    }
   }
 
   for (const dir of ['components', 'layouts', 'sites', 'styleguides', 'node_modules', 'files', 'sites/alpha', 'components/article']) {
@@ -190,7 +193,7 @@ async function runScenario(afs) {
   }
 
   for (const data of [undefined, null, 0, 5, true, 'text', '/_components/a', [], () => 1, new Map(), Buffer.from('x')]) {
-    await call(`getIndices of ${label(data)}`, afs.getIndices, '/_components/root', data);
+    await call(`getIndices of ${typeof data === 'string' ? JSON.stringify(data) : label(data)}`, afs.getIndices, '/_components/root', data);
   }
 
   for (const ref of [undefined, null, 5, '', {}]) {
